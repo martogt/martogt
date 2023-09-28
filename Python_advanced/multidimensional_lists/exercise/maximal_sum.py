@@ -1,33 +1,23 @@
 rows, cols = (int(x) for x in input().split())
 
-matrix = [[int(row) for row in input().split()] for col in range(cols)]
+matrix = [[int(row) for row in input().split()] for col in range(rows)]
 
-biggest_matrix = []
-biggest_sum = []
-result = 0
+max_sum = float('-inf')
+max_row = 0
+max_col = 0
 
 for row_index in range(rows - 2):
-
     for col_index in range(cols - 2):
-        if result > sum(biggest_sum):
-            continue
+        current_sum = 0
+        for r in range(row_index, row_index + 3):
+            for c in range(col_index, col_index + 3):
+                current_sum += matrix[r][c]
+                if current_sum > max_sum:
+                    max_sum = current_sum
+                    max_row = row_index
+                    max_col = col_index
 
-        first_left = matrix[row_index][col_index]
-        second_left = matrix[row_index][col_index + 1]
-        third_left = matrix[row_index][col_index + 2]
-        firs_middle = matrix[row_index + 1][col_index]
-        second_middle = matrix[row_index + 1][col_index + 1]
-        third_middle = matrix[row_index + 1][col_index + 2]
-        firs_bottom = matrix[row_index + 2][col_index]
-        second_bottom = matrix[row_index + 2][col_index + 1]
-        third_bottom = matrix[row_index + 2][col_index + 2]
+print(f"Sum = {max_sum}")
 
-        biggest_matrix.append([first_left, second_left, third_left])
-        biggest_matrix.append([firs_middle, second_middle, third_middle])
-        biggest_matrix.append([firs_bottom, second_bottom, third_bottom])
-
-        for i in biggest_matrix:
-            biggest_sum.append(sum(i))
-            result += sum(biggest_sum)
-
-        # biggest_matrix.clear()
+max_submatrix = [matrix[i][max_col:max_col + 3] for i in range(max_row, max_row + 3)]
+[print(*row) for row in max_submatrix]

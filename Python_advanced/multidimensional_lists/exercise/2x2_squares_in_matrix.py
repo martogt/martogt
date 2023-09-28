@@ -12,7 +12,5 @@ for row_i in range(rows - 1):
 
         if current_el == next_el == bottom_el == diagonal_el:
             counter += 1
-        else:
-            continue
 
 print(counter)
