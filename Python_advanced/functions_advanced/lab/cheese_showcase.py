@@ -12,8 +12,8 @@ def sorting_cheeses(**kwargs):
 
 print(
     sorting_cheeses(
-        Parmesan=[102, 120, 135],
-        Camembert=[100, 100, 105, 500, 430],
-        Mozzarella=[50, 125],
+        Parmigiano=[165, 215],
+        Feta=[150, 515],
+        Brie=[150, 125]
     )
 )
