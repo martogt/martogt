@@ -1,0 +1,1 @@
+def operate(sign, *args):
