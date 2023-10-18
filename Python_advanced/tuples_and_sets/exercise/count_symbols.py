@@ -16,4 +16,4 @@ text = tuple(input())
 unic_let = sorted(set(text))
 
 for char in unic_let:
-    print(f'{char}: {unic_let.count(char)} time/s')
+    print(f'{char}: {text.count(char)} time/s')
