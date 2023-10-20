@@ -1,27 +1,32 @@
-rows, cols = (int(x) for x in input().split(', '))
+data = input().split(", ")
+rows = int(data[0])
+cols = int(data[1])
+
 matrix = []
 
-max_sum_matrix = []
-max_sum_el = []
+for row in range(rows):
+    elements = [int(el) for el in input().split(", ")]
+    matrix.append(elements)
 
-for el in range(rows):
-    matrix.append([int(i) for i in input().split(', ')])
+max_sum = float("-inf")
+max_sum_sub_matrix = []
 
-for row_idx in range(rows - 1):
-    for col_idx in range(cols - 1):
-        current_el = matrix[row_idx][col_idx]
-        next_el = matrix[row_idx][col_idx + 1]
-        bottom_el = matrix[row_idx + 1][col_idx]
-        diagonal_el = matrix[row_idx + 1][col_idx + 1]
+for row_index in range(rows - 1):
+    for col_index in range(cols - 1):
+        current_element = matrix[row_index][col_index]
+        next_element = matrix[row_index][col_index + 1]
+        element_below = matrix[row_index + 1][col_index]
+        element_diagonal = matrix[row_index + 1][col_index + 1]
+        sum_elements = current_element + next_element + element_below + element_diagonal
 
-        sum_el = current_el + next_el + bottom_el + diagonal_el
+        if max_sum < sum_elements:
+            max_sum = sum_elements
+            max_sum_sub_matrix = [[current_element, next_element], [element_below, element_diagonal]]
 
-        max_sum = float('-inf')
-
-        if max_sum < sum_el:
-            max_sum_el = sum_el
-            max_sum_matrix = [[current_el, next_el], [bottom_el, diagonal_el]]
-
-print(matrix[0])
-print(matrix[1])
-print(max_sum_matrix)
+print(*max_sum_sub_matrix[0])
+print(*max_sum_sub_matrix[1])
+print(max_sum)
+# 3, 6
+# 7, 1, 3, 3, 2, 1
+# 1, 3, 9, 8, 5, 6
+# 4, 6, 7, 9, 1, 0
