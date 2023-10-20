@@ -12,7 +12,7 @@ for row_index in range(rows - 2):
         for r in range(row_index, row_index + 3):
             for c in range(col_index, col_index + 3):
                 current_sum += matrix[r][c]
-                if current_sum > max_sum:
+                if current_sum >= max_sum:
                     max_sum = current_sum
                     max_row = row_index
                     max_col = col_index
